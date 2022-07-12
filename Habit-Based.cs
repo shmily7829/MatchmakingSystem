@@ -16,12 +16,17 @@ namespace MatchmakingSystem
         //興趣先決(Habit-Based)：配對與自己興趣擁有最大交集量的對象（興趣交集量相同則選擇編號較小的那位）。
         public bool MakeMatch(List<Individual> individuals)
         {
-            if (individuals.Count == 0)
+            //Console.WriteLine($"測試興趣配對，共{individuals.Count}人");
+            try
             {
-                throw new ArgumentNullException();
+
+
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
-            Console.WriteLine($"測試興趣配對，共{individuals.Count}人");
             return true;
         }
     }

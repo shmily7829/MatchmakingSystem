@@ -4,20 +4,15 @@ class Program
 {
     public static void Main()
     {
-        try
-        {
-            List<Individual> individuals = AddTestPerson(5);
+        Individual myslef = new Individual();
+        myslef.RegisterIndividualData();
 
-            MatchSystem HabitMatch = new MatchSystem(new HabitBased(), individuals);
+        List<Individual> individuals = AddTestPerson(5);
 
-            Console.WriteLine(HabitMatch.IsMatch);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+        //MatchSystem HabitMatch = new MatchSystem(new HabitBased(), individuals);
+        MatchSystem Distance = new MatchSystem(new DistanceBased(), individuals);
 
-        Console.ReadKey();
+        Console.ReadLine();
     }
 
     public static List<Individual> AddTestPerson(int count)
