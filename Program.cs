@@ -4,20 +4,12 @@ class Program
 {
     public static void Main()
     {
-        try
-        {
-            List<Individual> individuals = AddTestPerson(5);
+        List<Individual> individuals = AddTestPerson(5);
 
-            MatchSystem HabitMatch = new MatchSystem(new HabitBased(), individuals);
+        MatchSystem HabitMatch = new MatchSystem(new HabitBased(), individuals);
 
-            Console.WriteLine(HabitMatch.IsMatch);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-
-        Console.ReadKey();
+        Console.WriteLine(HabitMatch.IsMatch);
+        Console.ReadLine();
     }
 
     public static List<Individual> AddTestPerson(int count)

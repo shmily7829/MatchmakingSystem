@@ -13,6 +13,7 @@ namespace MatchmakingSystem
 
         }
         private int _age;
+        private string _intro;
 
         /// <summary>
         /// 編號
@@ -29,7 +30,6 @@ namespace MatchmakingSystem
         /// </summary>
         public int Age
         {
-            //get;set;
             get
             {
                 return _age;
@@ -47,14 +47,13 @@ namespace MatchmakingSystem
         /// </summary>
         public string Intro
         {
-            get; set;
-            //get { return _intro; }
-            //set
-            //{
-            //    //if (_intro.Length > 200)
-            //    //    throw new ArgumentOutOfRangeException();
-            //    //_intro = value;
-            //}
+            get { return _intro; }
+            set
+            {
+                if (value.Length > 200)
+                    throw new ArgumentOutOfRangeException($"介紹長度不可大於200字，現為{value.Length}字。");
+                _intro = value;
+            }
         }
 
         /// <summary>
