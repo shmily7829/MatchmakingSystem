@@ -4,30 +4,40 @@ class Program
 {
     public static void Main()
     {
-        List<Individual> individuals = new List<Individual>();
-
-
-        var Ming = new Individual()
+        try
         {
-            Id = 1,
+            List<Individual> individuals = AddTestPerson(5);
 
-        };
+            MatchSystem HabitMatch = new MatchSystem(new HabitBased(), individuals);
 
-        var Mei = new Individual()
+            Console.WriteLine(HabitMatch.IsMatch);
+        }
+        catch (Exception ex)
         {
-
-        };
-
-        individuals.Add(Ming);
-        individuals.Add(Mei);
-
-
-
-        MatchSystem MatchA = new MatchSystem(individuals, new Habit_Based());
-        MatchSystem MatchB = new MatchSystem(individuals, new Distance_Based());
+            Console.WriteLine(ex.Message);
+        }
 
         Console.ReadKey();
+    }
 
+    public static List<Individual> AddTestPerson(int count)
+    {
+        List<Individual> individuals = new List<Individual>();
+
+        for (int i = 1; i <= count; i++)
+        {
+            var male = new Individual()
+            {
+                Id = i,
+                Age = 20 + i,
+                Intro = $"我是測試{i}號。",
+                Habits = new string[] { "畫圖", "爬山", "騎腳踏車" },
+                Gender = Gender.Male,
+                Coord = new Coord(Math.Pow(i, 2), Math.Pow(i, 2))
+            };
+            individuals.Add(male);
+        }
+        return individuals;
     }
 }
 

@@ -8,14 +8,13 @@ namespace MatchmakingSystem
 {
     internal class MatchSystem
     {
-        private List<Individual> _individualList;
-        private IMatchmakingStrategy _matchmakingStrategy;
+        public bool IsMatch = false;
+        //private List<Individual> _individuals;
+        //private IMatchmakingStrategy _matchmakingStrategy;
 
-        public MatchSystem(List<Individual> individualList, IMatchmakingStrategy matchmakingStrategy)
+        public MatchSystem(IMatchmakingStrategy matchmakingStrategy, List<Individual> individuals)
         {
-            this._individualList = individualList;
-            this._matchmakingStrategy = matchmakingStrategy;
+            this.IsMatch = matchmakingStrategy.MakeMatch(individuals);
         }
-
     }
 }

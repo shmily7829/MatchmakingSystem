@@ -8,62 +8,83 @@ namespace MatchmakingSystem
 {
     internal class Individual
     {
-        public int Id { get; set; }
-        public enum Gender
+        public Individual()
         {
-            Male,
-            Female,
-        }
 
+        }
         private int _age;
+
+        /// <summary>
+        /// 編號
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// 性別
+        /// </summary>
+        public Gender Gender { get; set; }
+
+        /// <summary>
+        /// 年齡
+        /// </summary>
         public int Age
         {
+            //get;set;
             get
             {
                 return _age;
             }
             set
             {
-                if (_age < 18)
-                    throw new ArgumentOutOfRangeException();
+                if (value < 18)
+                    throw new ArgumentOutOfRangeException($"年齡須大於18歲，你的年齡{value}歲。");
                 _age = value;
             }
 
         }
-
-        private string _intro;
-
+        /// <summary>
+        /// 介紹
+        /// </summary>
         public string Intro
         {
-            get { return _intro; }
-            set
-            {
-                if (_intro.Length > 200)
-                    throw new ArgumentOutOfRangeException();
-                _intro = value;
-            }
+            get; set;
+            //get { return _intro; }
+            //set
+            //{
+            //    //if (_intro.Length > 200)
+            //    //    throw new ArgumentOutOfRangeException();
+            //    //_intro = value;
+            //}
         }
 
+        /// <summary>
+        /// 興趣
+        /// </summary>
         public string[] Habits { get; set; }
 
-        private string _habit;
+        /// <summary>
+        /// 座標
+        /// </summary>
+        public Coord Coord { get; set; } = new Coord(0, 0);
+    }
 
-        public string Habit
+    public enum Gender
+    {
+        Male,
+        Female,
+    }
+
+    public class Coord
+    {
+        public Coord(double x, double y)
         {
-            get { return _habit; }
-            set
-            {
-                if (_habit.Length > 10)
-                    throw new ArgumentOutOfRangeException();
-                _habit = value;
-            }
+            X = x;
+            Y = y;
         }
 
-        public enum Coord
-        {
-            x,
-            y
-        }
+        public double X { get; set; }
+
+        public double Y { get; set; }
 
     }
 }
