@@ -52,13 +52,14 @@ namespace MatchmakingSystem
         /// </summary>
         public string Intro
         {
-            get { return _intro; }
-            set
-            {
-                if (value.Length > 200)
-                    throw new ArgumentOutOfRangeException($"介紹長度不可大於200字，現為{value.Length}字。");
-                _intro = value;
-            }
+            get; set;
+            //get { return _intro; }
+            //set
+            //{
+            //    //if (_intro.Length > 200)
+            //    //    throw new ArgumentOutOfRangeException();
+            //    //_intro = value;
+            //}
         }
 
         /// <summary>
