@@ -72,24 +72,29 @@ namespace MatchmakingSystem
         /// </summary>
         public Coord Coord { get; set; } = new Coord(0, 0);
 
-        public void RegisterIndividualData()
+        public Individual RegisterMyIndividual()
         {
-            InputGender();
-            InputAge();
-            InputIntro();
-            InputHabits();
-            InputCoord();
+            Individual individual = new Individual()
+            {
+                Id = 1,
+                Gender = InputGender(),
+                Age = InputAge(),
+                Intro = InputIntro(),
+                Habits = InputHabits(),
+                Coord = InputCoord()
+            };
+
+            return individual;
         }
 
-
-        private void InputCoord()
+        private Coord InputCoord()
         {
             //需要改成輸入程式轉換座標xy
             Console.WriteLine("請輸入位置");
             string command = Console.ReadLine();
             if (string.IsNullOrEmpty(command))
                 throw new ArgumentNullException("輸入資料不可為空!");
-            
+
             string[] coord = command?.Split(',');
 
             if (!double.TryParse(coord[0], out double x))
@@ -97,20 +102,21 @@ namespace MatchmakingSystem
             if (!double.TryParse(coord[1], out double y))
                 throw new ArgumentOutOfRangeException("輸入y座標必須為數值");
 
-            _coord = new Coord(x, y);
+            return new Coord(x, y);
         }
 
-        private void InputHabits()
+        private string[] InputHabits()
         {
             Console.WriteLine("你有什麼興趣呢？(可填寫多個興趣，每個興趣請用逗號隔開)");
 
             string command = Console.ReadLine() ?? string.Empty;
 
-            string[] Habits = command?.Split(',');
-            _habits = Habits;
+            string[] habits = command?.Split(',');
+
+            return habits;
         }
 
-        private void InputIntro()
+        private string InputIntro()
         {
             Console.WriteLine("稍微介紹一下自己吧！(字數限制在200字內)");
 
@@ -119,9 +125,9 @@ namespace MatchmakingSystem
             {
                 throw new ArgumentOutOfRangeException("輸入的介紹不可超過200字");
             }
-            _intro = intro;
+            return intro;
         }
-        private void InputAge()
+        private int InputAge()
         {
             Console.WriteLine("請輸入年齡");
             if (!int.TryParse(Console.ReadLine(), out int age))
@@ -139,10 +145,10 @@ namespace MatchmakingSystem
                     throw new ArgumentOutOfRangeException("輸入的年齡須在正常範圍內");
                 }
             }
-            _age = age;
+            return age;
         }
 
-        private void InputGender()
+        private Gender InputGender()
         {
             Console.WriteLine("請輸入性別代號：男=1、女=2、其他=3");
             if (!int.TryParse(Console.ReadLine(), out int gender))
@@ -156,7 +162,7 @@ namespace MatchmakingSystem
                     throw new ArgumentOutOfRangeException("輸入的代號不在範圍內");
                 }
             }
-            _gender = (Gender)Enum.Parse(typeof(Gender), gender.ToString());
+            return (Gender)Enum.Parse(typeof(Gender), gender.ToString());
         }
     }
 

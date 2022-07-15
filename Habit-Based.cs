@@ -17,26 +17,49 @@ namespace MatchmakingSystem
         public bool MakeMatch(List<Individual> individuals)
         {
             //Console.WriteLine($"測試興趣配對，共{individuals.Count}人");
+
+            Individual myData = individuals.Where(c=> c.Id == 1).First();
+            individuals.Remove(myData);
+
+            List<string> sameHabits = new List<string>();
+            int maxMappingCount = 0;
+            int lastMappingCount = 0;
             try
             {
+                foreach (var item in individuals)
+                {
+                    sameHabits.Clear();
+                    maxMappingCount = 0;
 
+                    foreach (var myHabit in myData.Habits)
+                    {
+                        foreach (var habit in item.Habits)
+                        {
+                            if (myHabit.Equals(habit))
+                            {
+                                sameHabits.Add(habit);
+                                maxMappingCount++;
+                            }
+                        }
+                    }
+                }
+                if (maxMappingCount > lastMappingCount)
+                {
+                    lastMappingCount = maxMappingCount;
+                }
+
+                Console.WriteLine(maxMappingCount);
+                foreach (var item in sameHabits)
+                {
+                    Console.WriteLine(item);
+                }
 
             }
             catch (ArgumentException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
-            return true;
-        }
-
-        class Group
-        {
-            public int GroupId { get; set; }
-
-            public string GroupName { get; set; }
-
-            public List<Individual> GroupMember { get; set; }
+            return maxMappingCount > 0 ? true : false;
         }
     }
 }

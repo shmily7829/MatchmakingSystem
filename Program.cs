@@ -6,7 +6,30 @@ class Program
     {
         try
         {
+            //Individual myIndividual = new Individual().RegisterMyIndividual();
             List<Individual> individuals = AddTestPerson(5);
+            Individual myIndividual = new Individual()
+            {
+                Id = 1,
+                Age = 25,
+                Intro = $"周杰倫最偉大的作品太讚啦!",
+                Habits = new string[] { "騎腳踏車" },
+                Gender = Gender.Male,
+                Coord = new Coord(5, 5)
+            };
+
+            Individual mostSameHobit = new Individual()
+            {
+                Id = individuals.Count + 1,
+                Age = 25,
+                Intro = $"周杰倫最偉大的作品太讚啦!",
+                Habits = new string[] { "聽音樂", "爬山", "騎腳踏車", "寫作", "唱歌" },
+                Gender = Gender.Male,
+                Coord = new Coord(5, 5)
+            };
+
+            individuals.Add(myIndividual);
+            individuals.Add(mostSameHobit);
 
             MatchSystem HabitMatch = new MatchSystem(new HabitBased(), individuals);
 
@@ -28,7 +51,7 @@ class Program
         {
             var male = new Individual()
             {
-                Id = i,
+                Id = i + 1,
                 Age = 20 + i,
                 Intro = $"我是測試{i}號。",
                 Habits = new string[] { "畫圖", "爬山", "騎腳踏車" },
