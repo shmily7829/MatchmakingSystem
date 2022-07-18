@@ -8,7 +8,7 @@ namespace MatchmakingSystem
 {
     internal interface IMatchmakingStrategy
     {
-        public bool MakeMatch(List<Individual> individuals);
+        public List<Individual> MakeMatch(List<Individual> individuals);
 
     }
 }
