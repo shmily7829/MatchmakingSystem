@@ -13,10 +13,11 @@ class Program
             List<Individual> individuals = DataMaker.AddTestData(30);
 
             //執行配對
-            MatchSystem HabitMatch = new MatchSystem(new HabitStrategy(), individuals);
-            for (int i = 0; i < HabitMatch.PairResult.Count; i++)
+            //MatchSystem match = new MatchSystem(new HabitStrategy(), individuals);
+            MatchSystem match = new MatchSystem(new DistanceStrategy(),individuals);
+            for (int i = 0; i < match.PairResult.Count; i++)
             {
-                Console.WriteLine(HabitMatch.PairResult[i].ToString()); 
+                Console.WriteLine(match.PairResult[i].ToString()); 
             }
         }
         catch (Exception ex)
