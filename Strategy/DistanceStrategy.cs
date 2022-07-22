@@ -8,10 +8,11 @@ namespace MatchmakingSystem
 {
     internal class DistanceStrategy : IMatchmakingStrategy
     {
-        private bool isReverse = false;
+        GameMessage message = new GameMessage();
+        private bool _isReverse = false;
         public DistanceStrategy()
         {
-            
+            _isReverse = message.SetReverse();
         }
 
         //**距離先決(Distance-Based)：**配對與自己距離最近的對象（距離相同則選擇編號較小的那位）。
@@ -30,6 +31,7 @@ namespace MatchmakingSystem
 
             return pairResult;
         }
+    
     }
 
 }

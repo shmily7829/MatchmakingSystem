@@ -8,10 +8,12 @@ namespace MatchmakingSystem
 {
     internal class HabitStrategy : IMatchmakingStrategy
     {
-        private bool isReverse = false;
+        GameMessage message = new GameMessage();
+        private bool _isReverse = false;
+
         public HabitStrategy()
         {
-
+            _isReverse = message.SetReverse();
         }
 
         //興趣先決(Habit-Based)：配對與自己興趣擁有最大交集量的對象（興趣交集量相同則選擇編號較小的那位）。
@@ -19,7 +21,7 @@ namespace MatchmakingSystem
         {
             List<Individual> pairList = new List<Individual>();
 
-            if (isReverse)
+            if (_isReverse)
             {
                 pairList = MakeReverseBestPair(individuals);
             }
@@ -38,7 +40,7 @@ namespace MatchmakingSystem
             Individual target = pairList.Where(c => c.Id == 1).First();
             pairList.Remove(target);
 
-            Individual bestPair =pairList.OrderByDescending(otherIndividual => otherIndividual.Habits.Intersect(target.Habits).Count()).First();
+            Individual bestPair = pairList.OrderByDescending(otherIndividual => otherIndividual.Habits.Intersect(target.Habits).Count()).First();
 
 
             pairResult.Add(target);

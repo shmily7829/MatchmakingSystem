@@ -9,6 +9,5 @@ namespace MatchmakingSystem
     internal interface IMatchmakingStrategy
     {
         public List<Individual> MakeMatch(List<Individual> individuals);
-
     }
 }

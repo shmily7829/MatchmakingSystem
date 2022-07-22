@@ -9,10 +9,11 @@ namespace MatchmakingSystem
     internal class MatchSystem
     {
         public List<Individual> PairResult;
+
         //private IMatchmakingStrategy _matchmakingStrategy;
 
         public MatchSystem(IMatchmakingStrategy matchmakingStrategy, List<Individual> individuals)
-        {
+        {        
             PairResult = matchmakingStrategy.MakeMatch(individuals);
         }
     }
