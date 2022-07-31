@@ -6,19 +6,20 @@ class Program
 {
     public static void Main()
     {
-        Console.OutputEncoding = Encoding.UTF8;
         //取得配對資料
-        List<Individual> individuals = DataMaker.AddTestData(30);
+        List<Individual> individuals = DataMaker.AddTestData(10);
+        GameMessage message = new GameMessage();
+        message.SetPairStrategy();
 
         //配對
-        MatchSystem match = new MatchSystem(new HabitStrategy(), individuals);
-        MatchSystem matchDistance = new MatchSystem(new DistanceStrategy(), individuals);
-     
-        for (int i = 0; i < match.PairResult.Count; i++)
+        if (message.PairStrategy == "H")
         {
-            Console.WriteLine(match.PairResult[i].ToString());
+            MatchSystem matchHabit = new MatchSystem(new HabitStrategy(), individuals);
         }
-        Console.ReadKey();
+        else if (message.PairStrategy == "D")
+        {
+            MatchSystem matchDistance = new MatchSystem(new DistanceStrategy(), individuals);
+        }
     }
 }
 

@@ -74,7 +74,7 @@ namespace MatchmakingSystem
         public override string ToString()
         {
             StringBuilder info = new StringBuilder();
-            info.AppendLine($"------ {Id} ------");
+            info.AppendLine($"====={Id}=====");
             info.AppendLine($"Age: {Age}");
             info.AppendLine($"Gender : {Gender}");
             info.AppendLine($"Coord: X:{Coord.X} Y:{Coord.Y}");

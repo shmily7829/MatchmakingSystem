@@ -12,13 +12,13 @@ namespace MatchmakingSystem
 
         public GameMessage()
         {
-
+            Console.OutputEncoding = Encoding.UTF8;
         }
 
         public bool SetReverse()
         {
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
             Console.WriteLine("the pair strategy need to reverse? Y/N");
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
             while (keyInfo.Key != ConsoleKey.Y && keyInfo.Key != ConsoleKey.N)
             {
                 Console.WriteLine("must be Y or N");
@@ -41,6 +41,22 @@ namespace MatchmakingSystem
             }
 
             PairStrategy = keyInfo.Key.ToString();
+        }
+
+        public void PrintDistance(Individual bestPair, Individual target)
+        {
+            Console.WriteLine($"Distance: {Math.Round(bestPair.Coord.Distance(target.Coord), 2)}");
+        }
+
+        public void PrintData(string DataName, List<Individual> testList)
+        {
+            Console.WriteLine($"=========={DataName}Begin============");
+            foreach (var individual in testList)
+            {
+                Console.WriteLine(individual.ToString());
+            }
+            Console.WriteLine($"=========={DataName}End============");
+            Console.ReadLine();
         }
     }
 }

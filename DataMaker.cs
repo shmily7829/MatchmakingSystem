@@ -44,16 +44,6 @@ namespace MatchmakingSystem
             }
         }
 
-        private static void PrintData(List<Individual> testData)
-        {
-            Console.WriteLine("==========TestDataBegin============");
-            foreach (var individual in testData)
-            {
-                Console.WriteLine(individual.ToString());
-            }
-            Console.WriteLine("==========TestDataEnd============");
-        }
-
         private static Gender RandomGender()
         {
             return (Gender)Enum.Parse(typeof(Gender), random.Next(1, 3).ToString());
@@ -103,6 +93,7 @@ namespace MatchmakingSystem
         }
 
         #region old
+        /*
         private Coord InputCoord()
         {
             //需要改成輸入程式轉換座標xy
@@ -180,6 +171,7 @@ namespace MatchmakingSystem
             }
             return (Gender)Enum.Parse(typeof(Gender), gender.ToString());
         }
+        */
         #endregion
     }
 }

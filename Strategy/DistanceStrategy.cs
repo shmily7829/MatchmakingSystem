@@ -21,17 +21,18 @@ namespace MatchmakingSystem
             Individual target = pairList[0];
             pairList.RemoveAt(0);
 
-            var bestPair = pairList.OrderBy(individual => individual.Coord.Distance(target.Coord)).First();
-
-            Console.WriteLine($"Distance: {Math.Round(bestPair.Coord.Distance(target.Coord),2)}");
+            pairList = pairList.OrderBy(individual => individual.Coord.Distance(target.Coord)).ToList();
+            Individual bestPair = _isReverse ? pairList.Last() : pairList.First();
 
             List<Individual> pairResult = new List<Individual>();
             pairResult.Add(target);
             pairResult.Add(bestPair);
 
+            message.PrintDistance(bestPair, target);
+            message.PrintData("Distance", pairResult);
             return pairResult;
         }
-    
+
     }
 
 }
